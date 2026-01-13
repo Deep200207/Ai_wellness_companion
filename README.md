@@ -1,10 +1,10 @@
-#AI Wellness Companion | Full-Stack Health & Fitness Platform
+# AI Wellness Companion | Full-Stack Health & Fitness Platform
 
 AI Wellness Companion is a full-stack, production-oriented wellness application designed to track physical activity, visualize health metrics, and provide AI-assisted wellness insights using real-time data.
 
 This project demonstrates end-to-end full-stack development, secure authentication, REST API integration, and scalable backend architecture, aligned with modern industry standards.
 
-##🔑 Key Highlights (Recruiter Snapshot)
+## 🔑 Key Highlights (Recruiter Snapshot)
 
 Full-stack application (React + Node.js + MongoDB)
 
@@ -18,7 +18,7 @@ Modular, scalable backend architecture
 
 Clean codebase with industry best practices
 
-##🚀 Core Features
+## 🚀 Core Features
 Authentication & Security
 
 Google OAuth using Firebase Authentication
@@ -49,7 +49,7 @@ AI chatbot for wellness interaction and guidance
 
 Extensible architecture for ML/CV features
 
-##🛠️ Technology Stack (ATS-Optimized)
+## 🛠️ Technology Stack (ATS-Optimized)
 
 Frontend
 
@@ -87,7 +87,7 @@ Modular folder structure
 
 API-first development
 
-##🧱 System Architecture
+## 🧱 System Architecture
 Client (React)
    │
    ├── Firebase Auth (Google OAuth)
@@ -116,7 +116,7 @@ ai-wellness-companion
 ├── .gitignore
 └── README.md
 
-##⚙️ Environment Configuration
+## ⚙️ Environment Configuration
 
 Create a .env file inside the backend directory:
 
@@ -130,7 +130,7 @@ FITBIT_CLIENT_SECRET=your_fitbit_client_secret
 FIREBASE_API_KEY=your_firebase_api_key
 
 
-##🔐 Environment variables are used to ensure security and scalability.
+## 🔐 Environment variables are used to ensure security and scalability.
 .env files are excluded from version control.
 
 ▶️ Local Development Setup
@@ -140,7 +140,7 @@ npm install
 npm run dev
 
 
-##Runs on: http://localhost:5000
+Runs on: http://localhost:5000
 
 Frontend
 cd ai-companion
@@ -148,9 +148,9 @@ npm install
 npm start
 
 
-##Runs on: http://localhost:3000
+Runs on: http://localhost:3000
 
-📈 Learning Outcomes & Skills Demonstrated
+## 📈 Learning Outcomes & Skills Demonstrated
 
 Full-stack application development
 
@@ -166,7 +166,7 @@ Secure handling of user data
 
 Clean Git workflow & project documentation
 
-🔮 Future Enhancements
+## 🔮 Future Enhancements
 
 Mood detection using OpenCV
 
@@ -178,7 +178,7 @@ CI/CD pipeline & cloud deployment
 
 Role-based access control (RBAC)
 
-##👨‍💻 Author
+## 👨‍💻 Author
 
 Deepak Roy
 CSE Student | Full-Stack Developer (React & Node.js)
