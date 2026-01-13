@@ -1,0 +1,36 @@
+@import "tailwindcss";
+body{
+    background-color: rgb(36, 39, 63);
+}
+#nav_bg{
+    background-color: rgb(194, 194, 236);
+}
+.slide-in-from-right{
+    animation: slideInLeft 0.8s ease-out forwards;
+    transform: translateX(-100%);
+}
+@keyframes slideInLeft {
+    from{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+.slide-in-from-left{
+    animation: slideInRight 0.8s ease-out forwards;
+    transform: translateX(0%);
+
+}
+@keyframes slideInRight{
+    from{
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to{
+        translate: translateX(0);
+        opacity: 1;
+    }
+}
