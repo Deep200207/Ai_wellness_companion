@@ -31,6 +31,7 @@ function safeParse(item) {
     return null;
   }
 }
+
 function Dashboard() {
   const [auth, setAuth] = useState(false);
   const [user, setUser] = useState(safeParse("user") || null);
@@ -64,7 +65,7 @@ const dispatch = useDispatch();
       role: "assistant",
       content: `Hi ${user?.name}! 
       I'm your AI Wellness Coach. 
-      Today you've walked ${user_data.todaySteps} steps 
+      Today you've walked ${user_data?.todaySteps} steps 
       How can I help you?`
     };
     setMessages([greeting]);
@@ -291,28 +292,11 @@ const dispatch = useDispatch();
                         </div>
                       </div>
                     </div>
-                    {/* <div className='rounded p-2 bg-gradient-to-r from-slate-50 to-slate-200 justify-center flex items-center'>
-                      <div>
-                        <h1 className='text-center font-semibold text-green-700 m-1 text-lg'>Steps Goal</h1>
-                        <h1 className='text-center font-bold'>{goal}</h1>
-                        {
-                          goal - steps > 0 ?
-                            <>
-                              <h1 className='text-center font-semibold text-red-600 m-1 '>Remaining Steps</h1>
-                              <h1 className='text-center font-semibold'>{goal - steps}</h1>
-                            </>
-                            :
-                            <h1 className='text-green-600 text-center text-lg font-bold'>{goal ? <><h1>Target Achieved</h1> </>
-                              : <><h1 className='text-blue-600
-                               '> Set Today Goals Now </h1></>}</h1>
-                        }
-                      </div>
-                    </div> */}
                     <div className="flex flex-col items-center p-2 text-black font-semibold bg-gray-300 border-2 rounded">
                       <h1 className='mt-2 text-lg'>Calories Burn</h1>
                       <h1>Today</h1>
                       <div className="mt-2 bg-orange-500 rounded-lg p-1 text-white text-center">
-                        🔥 <span className="font-bold">{(steps * 0.04).toFixed(1)}</span> cal burned
+                         <span className="font-bold">{(steps * 0.04).toFixed(1)}</span> cal burned
                       </div>
                     </div>
                   </div>
@@ -339,7 +323,7 @@ const dispatch = useDispatch();
                 </div>
                 <div>
                   <h2 className="text-white font-bold">AI Wellness Coach</h2>
-                  <p className="text-green-400 text-xs">● Online</p>
+                  <p className="text-green-400 text-xs"> Online</p>
                 </div>
               </div>
 
@@ -381,7 +365,7 @@ const dispatch = useDispatch();
               <div ref={chatEndRef} />
             </div>
 
-            {/* Quick Suggestions */}
+            {/* Quick Suggestions
             {/* {messages.length <= 1 && (
               <div className="flex flex-wrap gap-2 mb-3">
                 {suggestions.map((s, i) => (
@@ -394,10 +378,9 @@ const dispatch = useDispatch();
                   >
                     {s}
                   </button>
-                ))}
-              </div>
-            )} */}
-
+                ))} */}
+              {/* </div> */}
+            
             {/* Input Box */}
             <div className="flex gap-2">
               <input
