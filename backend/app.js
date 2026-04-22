@@ -13,7 +13,7 @@ import profilerouter from './routes/profile.js';
 import firebaseGoogleRouter from './routes/google_login.js';
 import firebase_fitbit from './routes/firebase_fitbit.js';
 import chatbotRoute from './routes/chatbotRoute.js';
-import hospitalrouter from './routes/hospitalRoute.js';
+import hospitalrouter from './routes/hospital.js';
 // import aqi from './routes/aqi.js';
 
 const {
