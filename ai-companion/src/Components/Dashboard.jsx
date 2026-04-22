@@ -17,10 +17,6 @@ import Groq from "groq-sdk"
 import { ThemeContext } from '../context/ThemeContext'
 
 
-const client = new Groq({
-  apiKey: import.meta.env.VITE_GROQ_API_KEY,
-  dangerouslyAllowBrowser: true
-});
 
 function safeParse(item) {
   try {
@@ -190,7 +186,7 @@ const dispatch = useDispatch();
         throw new Error("No user logged in.");
       }
       const idToken = await user.getIdToken();
-      const res = await fetch("http://localhost:5000/fitbit/steps", {
+      const res = await fetch("https://ai-wellness-companion-k1kr.onrender.com/fitbit/steps", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${idToken}`,

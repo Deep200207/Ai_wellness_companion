@@ -4,7 +4,7 @@ import Plot from "react-plotly.js";
 import { getAuth } from "firebase/auth";
 import { ThemeContext } from "../context/ThemeContext";
 
-export default function WeeklyStepsAutoPlot({ apiBase = "http://localhost:5000" }) {
+export default function WeeklyStepsAutoPlot({ apiBase = "https://ai-wellness-companion-k1kr.onrender.com" }) {
     const [user, setUser] = useState(null);
     const [stepsData, setStepsData] = useState([]);
     const [loading, setLoading] = useState(false);

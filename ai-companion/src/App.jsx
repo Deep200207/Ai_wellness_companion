@@ -25,7 +25,7 @@ export default function App() {
         <Route path='/med' element={<MedicalDeatails></MedicalDeatails>}></Route>
         <Route path='/Auth' element={<Fitbit_Auth></Fitbit_Auth>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
-        <Route path='/info' element={<User_info></User_info>}></Route>
+        {/* <Route path='/info' element={<User_info></User_info>}></Route> */}
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/chatbot' element={<ChatBot></ChatBot>}></Route>
         <Route path='/hos' element={<Hospital></Hospital>}></Route>

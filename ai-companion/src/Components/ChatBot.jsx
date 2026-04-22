@@ -24,7 +24,7 @@ export default function ChatBot() {
         setLoading(true);
 
         try {
-            const res = await fetch("http://localhost:5000/api/fitness-stream", {
+            const res = await fetch("https://ai-wellness-companion-k1kr.onrender.com/api/fitness-stream", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: userText })
