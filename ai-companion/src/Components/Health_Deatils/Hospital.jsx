@@ -19,7 +19,7 @@ export default function Hospital() {
           `;
             try {
                 const response = await fetch(
-                    "https://overpass-api.de/api/interpreter",
+                    "https://ai-wellness-companion-k1kr.onrender.com/api/hospital",
                     {
                         method: "POST",
                         body: query
