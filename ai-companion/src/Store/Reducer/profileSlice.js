@@ -12,7 +12,7 @@ export const setProfile=createAsyncThunk(
         const email=user.email;
         console.log(age)
         console.log(email)
-        const res=await fetch("http://localhost:5000/profile",{
+        const res=await fetch("https://ai-wellness-companion-k1kr.onrender.com/profile",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({age,gender,height,weight,email})
@@ -27,7 +27,7 @@ export const setProfile=createAsyncThunk(
 export const getProfile=createAsyncThunk(
     "getProfile",
     async({email},{rejectWithValue})=>{
-        const res=await fetch("http://localhost:5000/checkprofile",{
+        const res=await fetch("https://ai-wellness-companion-k1kr.onrender.com/checkprofile",{
             method:"POST",
             headers:{"Content-Type": "application/json"},
             body:JSON.stringify({email})
