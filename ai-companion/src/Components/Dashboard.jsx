@@ -67,49 +67,61 @@ const dispatch = useDispatch();
     setMessages([greeting]);
   }, []);
 
-  const sendMessage = async (userInput) => {
-    if (!userInput.trim()) return;
+   const sendMessage = async (userInput) => {
+  if (!userInput.trim()) return;
 
-    
-    const userMsg = { role: "user", content: userInput };
-    const updatedMessages = [...messages, userMsg];
-    setMessages(updatedMessages);
-    setInput("");
-    setLoading(true);
-    const response = await client.chat.completions.create({
-      model: "llama-3.1-8b-instant",
-      messages: [
-        {
-          role: "system", content: `
-          You are Personal AI Wellness Coach.
-          User Profile:
-          Weight: ${user_data?.weight} kg
-          Height: ${user_data?.height} cm
-          BMI: ${bmi_score}
-          Today's Steps: ${steps}
-          Calories Burned: ${(steps * 0.04).toFixed(1)} kcal
-          Weekly Steps: ${JSON.stringify(sevenDaysStep)}
+  const userMsg = { role: "user", content: userInput };
+  const updatedMessages = [...messages, userMsg];
+  setMessages(updatedMessages);
+  setInput("");
+  setLoading(true);
 
-          Rules:
-            - Remember everything from this conversation
-            - Give short friendly responses (2-3 sentences)
-            - Be motivating and positive
-            - Give specific advice based on their data
-            - If they follow up, refer to previous messages
+  // Add empty assistant message to fill as stream comes in
+  setMessages(prev => [...prev, { role: "assistant", content: "" }]);
 
-          ` },
-        ...updatedMessages
-      ],
-      temperature: 0.7,
-      max_completion_tokens: 300
-    });
-    const reply = response.choices[0].message.content;
-    setMessages(prev => [
-      ...prev,
-      { role: "assistant", content: reply }
-    ]);
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/fitness-stream`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: `
+            User Profile:
+            Weight: ${user_data?.weight} kg, Height: ${user_data?.height} cm
+            BMI: ${bmi_score}, Today Steps: ${steps}
+            Calories: ${(steps * 0.04).toFixed(1)} kcal
+            Weekly Steps: ${JSON.stringify(sevenDaysStep)}
+
+            User says: ${userInput}
+          `
+        })
+      }
+    );
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder("utf-8");
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const chunk = decoder.decode(value, { stream: true });
+      // Append each chunk to the last assistant message
+      setMessages(prev => {
+        const updated = [...prev];
+        updated[updated.length - 1] = {
+          role: "assistant",
+          content: updated[updated.length - 1].content + chunk
+        };
+        return updated;
+      });
+    }
+  } catch (err) {
+    console.error("Chat error:", err);
+  } finally {
     setLoading(false);
   }
+};
 
   const getdata = () => {
     console.log(sevenDaysStep)
