@@ -4,7 +4,7 @@ export const sendUser = createAsyncThunk(
   "user/signup",
   async ({ name, email, password }, { rejectWithValue }) => {
     try {
-      const res = await fetch("http://localhost:5000/signup", {
+      const res = await fetch("https://ai-wellness-companion-k1kr.onrender.comsignup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password })
@@ -24,7 +24,7 @@ export const loginUser = createAsyncThunk(
   "user/login",
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      const res = await fetch("http://localhost:5000/login", {
+      const res = await fetch("https://ai-wellness-companion-k1kr.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
@@ -43,7 +43,7 @@ export const loginUser = createAsyncThunk(
 export const googleLogin = createAsyncThunk(
   "user/google",
   async ({ idToken }) => {
-    const res = await fetch("http://localhost:5000/auth/firebase/google", {
+    const res = await fetch("https://ai-wellness-companion-k1kr.onrender.com/auth/firebase/google", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ idToken }),
