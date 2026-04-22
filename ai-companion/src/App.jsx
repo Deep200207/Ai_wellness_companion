@@ -10,7 +10,7 @@ import Profile from './Components/Profile'
 import ChatBot from './Components/ChatBot'
 import { ThemeContext } from './context/ThemeContext'
 import MedicalDeatails from './Components/MedicalDeatails'
-import Hospital from './Components/Health_Deatils/hospital'
+import Hospital from './Components/Health_Deatils/Hospital'
 import Pharmacy from './Components/Health_Deatils/Pharmacy'
 
 // import DashBord2 from './Components/DashBord2'
