@@ -82,4 +82,4 @@ hospitalrouter.get("/hospitals", async (req, res) => {
   }
 });
 
-module.exports = hospitalrouter;
+export default hospitalrouter
