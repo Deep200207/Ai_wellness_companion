@@ -1,6 +1,7 @@
 // File: routes/hospitals.js
 
-const express = require("express");
+// const express = require("express");
+import express from "express";
 const hospitalrouter = express.Router();
 
 // Node 18+ has fetch built in.
