@@ -15,7 +15,7 @@ export default function Hospital() {
 
           // Correct backend API call
           const response = await fetch(
-            `https://ai-wellness-companion-k1kr.onrender.com/api/hospital/hospitals?lat=${lat}&lng=${lng}`
+            `https://ai-wellness-companion-k1kr.onrender.com/api/hospitals?lat=${lat}&lng=${lng}`
           );
 
           const data = await response.json();

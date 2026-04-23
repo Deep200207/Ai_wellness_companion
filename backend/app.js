@@ -48,7 +48,7 @@ mongoose.connect(MONGO_URI, {
   app.use('/',firebase_fitbit);
   app.use('/',firebaseGoogleRouter);
   app.use('/',chatbotRoute);
-  app.use('/api/hospital',hospitalrouter)
+  app.use('/',hospitalrouter)
   // app.use('/',aqi)
 
 
