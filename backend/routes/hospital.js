@@ -12,7 +12,6 @@ hospitalrouter.get("/hospitals", async (req, res) => {
   try {
     const { lat, lng } = req.query;
 
-    // Validate inputs
     if (!lat || !lng) {
       return res.status(400).json({
         success: false,
@@ -30,9 +29,8 @@ hospitalrouter.get("/hospitals", async (req, res) => {
       });
     }
 
-    // Overpass API Query
     const query = `
-      [out:json];
+      [out:json][timeout:25];
       (
         node["amenity"="hospital"](around:5000,${latitude},${longitude});
         way["amenity"="hospital"](around:5000,${latitude},${longitude});
@@ -41,20 +39,37 @@ hospitalrouter.get("/hospitals", async (req, res) => {
       out center tags;
     `;
 
-    const response = await fetch(
-      "https://overpass-api.de/api/interpreter",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "text/plain"
-        },
-        body: query
-      }
-    );
+    const response = await fetch("https://overpass-api.de/api/interpreter", {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain"
+      },
+      body: query
+    });
 
-    const data = await response.json();
+    // ✅ IMPORTANT CHECK
+    if (!response.ok) {
+      const text = await response.text();
+      console.log("Overpass Error:", text);
 
-    const hospitals = data.elements.map((item, index) => ({
+      return res.status(500).json({
+        success: false,
+        message: "Overpass API failed"
+      });
+    }
+
+    let data;
+    try {
+      data = await response.json();
+    } catch (err) {
+      console.log("JSON Parse Error");
+      return res.status(500).json({
+        success: false,
+        message: "Invalid response from API"
+      });
+    }
+
+    const hospitals = (data.elements || []).map((item, index) => ({
       id: item.id || index,
       name: item.tags?.name || "Unnamed Hospital",
       type: item.tags?.amenity || "hospital",
@@ -74,13 +89,12 @@ hospitalrouter.get("/hospitals", async (req, res) => {
     });
 
   } catch (error) {
-    console.log(error);
+    console.log("Hospital Route Error:", error.message);
 
     res.status(500).json({
       success: false,
-      message: "Server Error"
+      message: error.message
     });
   }
 });
-
 export default hospitalrouter

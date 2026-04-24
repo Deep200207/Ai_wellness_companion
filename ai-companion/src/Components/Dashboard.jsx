@@ -50,7 +50,9 @@ function Dashboard() {
   const [input, setInput] = useState("");
   const chatEndRef = useRef(null);
 
-
+// const getUserData = ()=>{
+//   console.log(steps)
+// }
 const dispatch = useDispatch();
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -61,7 +63,7 @@ const dispatch = useDispatch();
       role: "assistant",
       content: `Hi ${user?.name}! 
       I'm your AI Wellness Coach. 
-      Today you've walked ${user_data?.todaySteps} steps 
+      Today you've walked ${steps} steps 
       How can I help you?`
     };
     setMessages([greeting]);
@@ -81,7 +83,7 @@ const dispatch = useDispatch();
 
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/fitness-stream`,
+      `https://ai-wellness-companion-k1kr.onrender.com/api/fitness-stream`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -234,6 +236,7 @@ const dispatch = useDispatch();
             <h1 className="text-sm md:text-xl  font-bold text-slate-100 p-1">Hello, {user?.name ?? 'User'}!</h1>
             <h1 className="font-light text-sm  text-slate-300 md:font-semibold font-sans p-1">Let's begin our journey to better health </h1>
           </div>
+          {/* <div className='p-2' onClick={()=>getUserData()}>user data</div> */}
           <div className='md:p-2 w-full p-1 grid grid-cols-2'>
             <div className="">
               <div className='border-2 border-white'>

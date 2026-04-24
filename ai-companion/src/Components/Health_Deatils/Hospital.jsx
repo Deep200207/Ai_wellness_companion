@@ -12,7 +12,7 @@ export default function Hospital() {
         try {
           const lat = position.coords.latitude;
           const lng = position.coords.longitude;
-
+          console.log("Coordinates:", lat, lng);
           // Correct backend API call
           const response = await fetch(
             `https://ai-wellness-companion-k1kr.onrender.com/hospitals?lat=${lat}&lng=${lng}`
