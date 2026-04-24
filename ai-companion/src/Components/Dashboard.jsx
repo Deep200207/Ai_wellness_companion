@@ -128,8 +128,8 @@ useEffect(() => {
             BMI: ${bmi_score}, Today Steps: ${steps}
             Calories: ${(steps * 0.04).toFixed(1)} kcal
             Weekly Steps: ${JSON.stringify(sevenDaysStep)}
-
             User says: ${userInput}
+            nearest hospital: ${place.length > 0 ? place[0].name : "No data"}
           `
         })
       }
