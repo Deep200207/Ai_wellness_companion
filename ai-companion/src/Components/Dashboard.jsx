@@ -49,6 +49,7 @@ function Dashboard() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const chatEndRef = useRef(null);
+  const [place, setPlaces] = useState([]);
 
 // const getUserData = ()=>{
 //   console.log(steps)
@@ -57,6 +58,39 @@ const dispatch = useDispatch();
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+useEffect(() => {
+    setLoading(true);
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          console.log("Coordinates:", lat, lng);
+          // Correct backend API call
+          const response = await fetch(
+            `https://ai-wellness-companion-k1kr.onrender.com/hospitals?lat=${lat}&lng=${lng}`
+          );
+
+          const data = await response.json();
+
+          console.log(data);
+
+          setPlaces(data.hospitals || []);
+          setLoading(false);
+
+        } catch (err) {
+          console.log("error", err);
+          setLoading(false);
+        }
+      },
+      (error) => {
+        console.log(error);
+        setLoading(false);
+      }
+    );
+  }, []);
 
   useEffect(() => {
     const greeting = {
