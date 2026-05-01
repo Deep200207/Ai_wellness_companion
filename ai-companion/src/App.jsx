@@ -12,6 +12,7 @@ import { ThemeContext } from './context/ThemeContext'
 import MedicalDeatails from './Components/MedicalDeatails'
 import Hospital from './Components/Health_Deatils/Hospital'
 import Pharmacy from './Components/Health_Deatils/Pharmacy'
+import MoodTracker from './Components/MoodTracker'
 
 // import DashBord2 from './Components/DashBord2'
 export default function App() {
@@ -30,6 +31,7 @@ export default function App() {
         <Route path='/chatbot' element={<ChatBot></ChatBot>}></Route>
         <Route path='/hos' element={<Hospital></Hospital>}></Route>
         <Route path='/phar' element={<Pharmacy></Pharmacy>}></Route>
+        <Route path='/track' element={<MoodTracker></MoodTracker>}></Route>
       </Routes>
     </ThemeContext.Provider>
   )

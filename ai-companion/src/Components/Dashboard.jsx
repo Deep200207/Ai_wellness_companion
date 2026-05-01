@@ -276,7 +276,7 @@ useEffect(() => {
             <div className="">
               <div className='border-2 border-white'>
                 <h1 className='text-center text-white p-2 text-xl font-semibold'>Body Metrics</h1>
-                <div className=' md:grid md:grid-cols-3 md:p-2   text-slate-800 md:space-x-2 md:justify-center md:items-center'>
+                <div className=' md:grid md:grid-cols-3 md:p-2 text-slate-800 md:space-x-2 md:justify-center md:items-center'>
                   <div className='mb-5 rounded bg-gradient-to-r from-slate-50 to-slate-100 justify-center flex items-center '>
                     <div>
                       <h1 className='text-center font-semibold m-2 p-2 text-xl'>Weight</h1>
