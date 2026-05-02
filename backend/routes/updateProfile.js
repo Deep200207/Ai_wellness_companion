@@ -1,5 +1,5 @@
 import express from 'express'
-import Profile from '../models/Profile';
+import Profile from '../models/Profile.js';
 
 const updateProfileRouter = express.Router();
 
