@@ -1,9 +1,9 @@
 import express from 'express'
 import Profile from '../models/Profile';
 
-const profileRouter = express.Router();
+const updateProfileRouter = express.Router();
 
-profileRouter.put('/update',async (req, res) =>{
+updateProfileRouter.put('/update',async (req, res) =>{
     try{
         const { email,age,hegiht,weight} = req.body;
         
@@ -20,4 +20,4 @@ profileRouter.put('/update',async (req, res) =>{
     }
 }
 )
-export default profileRouter;
+export default updateProfileRouter;

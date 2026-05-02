@@ -14,9 +14,23 @@ export default function Profile() {
     const [goal, setGoal] = useState(null);
     const { isChange } = useSelector((state) => state.user)
 
-    const updateUser = () => {
-
+    const updateUser = async () => {
+        const res = await fetch('https://ai-wellness-companion-k1kr.onrender.com/update',{
+            method: "PUT",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body : JSON.stringify({
+                email:email,
+                age:Age,
+                height:height,
+                weight:weight,
+            })
+        })
+        const data = await res.json();
+        console.log(data)
     }
+
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("user"))
         const user_data = JSON.parse(localStorage.getItem("user_data"))
