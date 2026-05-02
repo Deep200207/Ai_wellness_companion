@@ -5,11 +5,11 @@ const updateProfileRouter = express.Router();
 
 updateProfileRouter.put('/update',async (req, res) =>{
     try{
-        const { email,age,hegiht,weight} = req.body;
+        const { email,age,height,weight} = req.body;
         
         const updateProfile = await Profile.findOneAndUpdate(
             {email: email},
-            {age: age, height: hegiht, weight: weight},
+            {age: age, height: height, weight: weight},
         )
         if(!updateProfile){
             return res.status(404).json({ message: 'Profile not found' });
