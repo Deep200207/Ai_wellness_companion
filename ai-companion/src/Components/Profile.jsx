@@ -7,6 +7,9 @@ export default function Profile() {
     const [auth, setAuth] = useState(false);
     const [name, setName] = useState(null);
     const [email, setEmail] = useState(null);
+    const [newHeight, setNewHeight] = useState(null);
+    const [newWeight, setNewWeight] = useState(null);
+    const [newAge, setNewAge] = useState(null);
     const [gender, setGender] = useState(null);
     const [height, setHeight] = useState(null);
     const [weight, setWeight] = useState(null);
@@ -22,9 +25,9 @@ export default function Profile() {
             },
             body : JSON.stringify({
                 email:email,
-                age:Age,
-                height:height,
-                weight:weight,
+                age:newAge || Age,
+                height:newHeight || height,
+                weight:newWeight || weight,
             })
         })
         const data = await res.json();
@@ -74,15 +77,15 @@ export default function Profile() {
                                 <button className='text-sm p-2 bg-green-500 m-1 rounded-2xl cursor-pointer'onClick={()=>updateUser()}>Update</button></div>
                         </div>
                         <div className='text-slate-100  w-[80%]'>
-                            <div className='text-xl p-2'> <h1 className='p-2'>Weight: </h1> <input className='bg-slate-50  text-slate-800 p-2 rounded w-[80%] placeholder-black'placeholder={weight} onChange={(e)=>setWeight(e.target.value)}></input>
+                            <div className='text-xl p-2'> <h1 className='p-2'>Weight: </h1> <input className='bg-slate-50  text-slate-800 p-2 rounded w-[80%] placeholder-black'placeholder={weight} onChange={(e)=>setNewWeight(e.target.value)}></input>
                                 <button className='text-sm p-2 bg-green-500 m-1 rounded-2xl cursor-pointer' onClick={()=>updateUser()}>Update</button></div>
                         </div>
                         <div className='text-slate-100  w-[80%]'>
-                            <div className='text-xl p-2'><h1 className='p-2'>Height:</h1><input className='bg-slate-50  text-slate-800 p-2 rounded w-[80%] outline-0 placeholder-black' placeholder={height} onChange={(e)=>setHeight(e.target.value)}></input>
+                            <div className='text-xl p-2'><h1 className='p-2'>Height:</h1><input className='bg-slate-50  text-slate-800 p-2 rounded w-[80%] outline-0 placeholder-black' placeholder={height} onChange={(e)=>setNewHeight(e.target.value)}></input>
                                 <button className='text-sm p-2 bg-green-500 m-1 rounded-2xl cursor-pointer' onClick={()=>updateUser()}>Update</button></div>
                         </div>
                         <div className='text-slate-100  w-[80%]'>
-                            <div className='text-xl p-2'><h1 className='p-2'>Age:</h1><input value={Age} className='bg-slate-50  text-slate-800 p-2 rounded w-[80%]' placeholder='N.a' ></input>
+                            <div className='text-xl p-2'><h1 className='p-2'>Age:</h1><input value={Age} className='bg-slate-50  text-slate-800 p-2 rounded w-[80%]' placeholder='N.a'onChange={(e)=>setNewAge(e.target.value)} ></input>
                                 <button className='text-sm p-2 bg-green-500 m-1 rounded-2xl cursor-pointer' onClick={()=>updateUser()}>Update</button></div>
                         </div>
                         <div className='text-slate-100  w-[80%]'>
