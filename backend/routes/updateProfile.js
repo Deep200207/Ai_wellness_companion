@@ -20,3 +20,4 @@ profileRouter.put('/update',async (req, res) =>{
     }
 }
 )
+export default profileRouter;

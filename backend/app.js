@@ -14,6 +14,7 @@ import firebaseGoogleRouter from './routes/google_login.js';
 import firebase_fitbit from './routes/firebase_fitbit.js';
 import chatbotRoute from './routes/chatbotRoute.js';
 import hospitalrouter from './routes/hospital.js';
+import profileRouter from './routes/updateProfile.js';
 // import aqi from './routes/aqi.js';
 
 const {
@@ -49,6 +50,7 @@ mongoose.connect(MONGO_URI, {
   app.use('/',firebaseGoogleRouter);
   app.use('/',chatbotRoute);
   app.use('/',hospitalrouter)
+  app.use('/',profileRouter)
   // app.use('/',aqi)
 
 

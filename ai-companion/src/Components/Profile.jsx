@@ -13,6 +13,10 @@ export default function Profile() {
     const [Age, setAge] = useState(null);
     const [goal, setGoal] = useState(null);
     const { isChange } = useSelector((state) => state.user)
+
+    const updateUser = () => {
+
+    }
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("user"))
         const user_data = JSON.parse(localStorage.getItem("user_data"))
@@ -43,7 +47,7 @@ export default function Profile() {
                         <div className='text-slate-100 w-[80%]   '>
                             <div className='text-xl p-2 '><h1 className='p-2'>Name: </h1> 
                             <input  className='bg-slate-50  text-slate-800 p-2 rounded w-[80%] outline-0 placeholder-black' placeholder={name} ></input>
-                                <button className='text-sm p-2 bg-green-500 m-1 rounded-2xl cursor-pointer'>Update</button>
+                                <button className='text-sm p-2 bg-green-500 m-1 rounded-2xl cursor-pointer' onClick={()=>updateUser()}>Update</button>
                             </div>
                         </div>
                         <div className='text-slate-100 w-[80%]'>
@@ -53,19 +57,19 @@ export default function Profile() {
                         <div className='text-slate-100 w-[80%]'>
                             <div className='text-xl p-2'><h1 className='p-2'>Gender: </h1> <input  className='bg-slate-50  text-slate-800 p-2 rounded w-[80%] placeholder-black 
                             outline-1' placeholder={gender}></input>
-                                <button className='text-sm p-2 bg-green-500 m-1 rounded-2xl cursor-pointer'>Update</button></div>
+                                <button className='text-sm p-2 bg-green-500 m-1 rounded-2xl cursor-pointer'onClick={()=>updateUser()}>Update</button></div>
                         </div>
                         <div className='text-slate-100  w-[80%]'>
-                            <div className='text-xl p-2'> <h1 className='p-2'>Weight: </h1> <input className='bg-slate-50  text-slate-800 p-2 rounded w-[80%] placeholder-black'placeholder={weight} ></input>
-                                <button className='text-sm p-2 bg-green-500 m-1 rounded-2xl cursor-pointer'>Update</button></div>
+                            <div className='text-xl p-2'> <h1 className='p-2'>Weight: </h1> <input className='bg-slate-50  text-slate-800 p-2 rounded w-[80%] placeholder-black'placeholder={weight} onChange={(e)=>setWeight(e.target.value)}></input>
+                                <button className='text-sm p-2 bg-green-500 m-1 rounded-2xl cursor-pointer' onClick={()=>updateUser()}>Update</button></div>
                         </div>
                         <div className='text-slate-100  w-[80%]'>
-                            <div className='text-xl p-2'><h1 className='p-2'>Height:</h1><input className='bg-slate-50  text-slate-800 p-2 rounded w-[80%] outline-0 placeholder-black' placeholder={height} ></input>
-                                <button className='text-sm p-2 bg-green-500 m-1 rounded-2xl cursor-pointer'>Update</button></div>
+                            <div className='text-xl p-2'><h1 className='p-2'>Height:</h1><input className='bg-slate-50  text-slate-800 p-2 rounded w-[80%] outline-0 placeholder-black' placeholder={height} onChange={(e)=>setHeight(e.target.value)}></input>
+                                <button className='text-sm p-2 bg-green-500 m-1 rounded-2xl cursor-pointer' onClick={()=>updateUser()}>Update</button></div>
                         </div>
                         <div className='text-slate-100  w-[80%]'>
                             <div className='text-xl p-2'><h1 className='p-2'>Age:</h1><input value={Age} className='bg-slate-50  text-slate-800 p-2 rounded w-[80%]' placeholder='N.a' ></input>
-                                <button className='text-sm p-2 bg-green-500 m-1 rounded-2xl cursor-pointer'>Update</button></div>
+                                <button className='text-sm p-2 bg-green-500 m-1 rounded-2xl cursor-pointer' onClick={()=>updateUser()}>Update</button></div>
                         </div>
                         <div className='text-slate-100  w-[80%]'>
                             <div className='text-xl p-2'><h1 className='p-2'>Set Goal:</h1><input value={goal} className='bg-slate-50  text-slate-800 p-2 rounded w-[80%]' placeholder='N.a' ></input>
