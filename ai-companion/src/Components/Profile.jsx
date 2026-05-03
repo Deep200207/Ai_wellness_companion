@@ -25,9 +25,9 @@ export default function Profile() {
             },
             body : JSON.stringify({
                 email:email,
-                age:newAge || Age,
-                height:newHeight || height,
-                weight:newWeight || weight,
+                age:newAge ?? Age,
+                height:newHeight ?? height,
+                weight:newWeight ?? weight,
             })
         })
         const data = await res.json();

@@ -30,6 +30,8 @@ function safeParse(item) {
 
 function Dashboard() {
   const [auth, setAuth] = useState(false);
+  const [currentMood, setCurrentMood] = useState(localStorage.getItem("currentMood") ? JSON.parse(localStorage.getItem("currentMood")) : null);
+  const [moodHistory, setMoodHistory] = useState( localStorage.getItem("moodHistory") ? JSON.parse(localStorage.getItem("moodHistory")) : []);  
   const [user, setUser] = useState(safeParse("user") || null);
   const [user_data, setUser_data] = useState(safeParse("user_data") || null);
   const [bmi_score, setBmi_Score] = useState(null);
@@ -131,6 +133,8 @@ useEffect(() => {
             User says: ${userInput}
             nearest hospital: ${place.length > 0 ? place.map(h => h.name).join(", ") : "No data"}
             give answer in 3 line 
+            mood history: ${moodHistory.length > 0 ? moodHistory.map(m => m.mood).join(", ") : "No data"}
+            current mood: ${currentMood ? currentMood.mood : "N/A"}
           `
         })
       }
@@ -326,14 +330,12 @@ useEffect(() => {
                       </div>
                     </div>
                     <div>
-                      <div className='rounded p-2 bg-gradient-to-r from-slate-50 to-slate-200 justify-center flex items-center'>
+                      <div className='rounded p-2 mt-2 bg-gradient-to-r from-slate-50 to-slate-200 justify-center flex items-center'>
                         <div>
-                          <h1 className='text-center font-semibold m-2 p-2 text-xl'>Today Goals</h1>
+                          <h1 className='text-center font-semibold m-1 p-2 text-xl'>Current Mood</h1>
                           <div className=''>
-                            <input className='p-1 outline-0 border-2 rounded placeholder-black' placeholder='Set Steps Goal' onChange={(e) => setTar(e.target.value)}></input>
-                          </div>
-                          <div className='text-center'>
-                            <button className=' p-2 bg-amber-500 mt-2 rounded-2xl' onClick={() => setGoal(tar)}>Set Step</button>
+                            <h1 className='text-center text-xl'>{currentMood ? currentMood.mood : "N/A"}</h1>
+                            <h1 className='text-center text-2xl'>{currentMood ? currentMood.moodEmoji : "N/A"}</h1>
                           </div>
                         </div>
                       </div>

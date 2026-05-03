@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
 export default function MoodTracker() {
-  const [moodHistory, setMoodHistory] = useState([]);
-  const [currentMood, setCurrentMood] = useState("");
+  const [moodHistory, setMoodHistory] = useState(localStorage.getItem("moodHistory") ? JSON.parse(localStorage.getItem("moodHistory")) : []);
+  const [currentMood, setCurrentMood] = useState(localStorage.getItem("currentMood") ? JSON.parse(localStorage.getItem("currentMood")) : null);
   const [textInput, setTextInput] = useState("");
+  // const [sentimentResult, setSentimentResult] = useState("");
   const [sentimentResult, setSentimentResult] = useState("");
 
   const moods = [
@@ -19,19 +20,32 @@ export default function MoodTracker() {
     const newEntry = { mood, date: today };
 
     setMoodHistory([newEntry, ...moodHistory]);
-    setCurrentMood(mood.label);
+    localStorage.setItem("moodHistory", JSON.stringify([newEntry, ...moodHistory]));
+    setCurrentMood({ mood: mood.label, moodEmoji: mood.emoji });
+    localStorage.setItem("currentMood", JSON.stringify({ mood: mood.label, moodEmoji: mood.emoji }));
   };
 
-  const analyzeMood = () => {
+  const analyzeMood = async () => {
     if (textInput.trim() === "") return;
+    try {
+      const res = await fetch("http://127.0.0.1:5000/predict", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          sentences: [textInput]
+        })
+      });
 
-    if (textInput.includes("happy") || textInput.includes("good")) {
-      setSentimentResult("😊 Positive Mood");
-    } else if (textInput.includes("sad") || textInput.includes("bad")) {
-      setSentimentResult("😔 Negative Mood");
-    } else {
-      setSentimentResult("😐 Neutral Mood");
+      const data = await res.json();
+      console.log(data);
+      setSentimentResult(`Predicted Mood: ${data.results[0].emotion}`);
+
+    } catch (err) {
+      console.error("Error:", err);
     }
+
   };
 
   return (
@@ -64,7 +78,8 @@ export default function MoodTracker() {
         {currentMood && (
           <div className="text-center bg-gray-100 p-3 rounded-xl mb-4">
             <p className="text-gray-700">
-              Current Mood: <span className="font-bold">{currentMood}</span>
+              Current Mood: <span className="font-bold">{currentMood.mood}</span>
+              <span className="text-2xl ml-2">{currentMood.moodEmoji}</span>
             </p>
           </div>
         )}
